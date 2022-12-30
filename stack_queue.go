@@ -47,10 +47,12 @@ type StackWithArray struct {
     stack []int
 }
 
+// 入栈
 func (this *StackWithArray) Push(v int) {
     this.stack = append(this.stack, v)
 }
 
+// 出栈
 func (this *StackWithArray) Pop() int {
     if this.Empty() {
         panic("Stack Empty...")
@@ -112,6 +114,7 @@ type QueueWithArray struct {
     deIdx   uint  // 出队位置，初始为 0
 }
 
+// 新建队列
 func MakeQueue(size uint) QueueWithArray {
     return QueueWithArray{
         queue:   make([]int, size),
@@ -171,19 +174,104 @@ func (this *QueueWithArray) Empty() bool {
 
 // 5、用两个队列实现栈
 type StackWithQueue struct {
-    mainQueue      QueueWithList // 主队
-    secondaryQueue QueueWithList // 辅队
+    q1 QueueWithList // 主队
+    q2 QueueWithList // 辅队
 }
 
+// 入栈
 func (this *StackWithQueue) Push(v int) {
-    // 入栈时，将数据写入 inQueue
-    //this.inQueue.Enqueue(v)
+    // 入栈时，将数据写入非空的队列
+    if !this.q1.Empty() {
+        this.q1.Enqueue(v)
+    } else {
+        this.q2.Enqueue(v)
+    }
 }
 
+// 出栈
 func (this *StackWithQueue) Pop() int {
-    // 出栈时，如果 outStack
+    if this.Empty() {
+        panic("Stack Empty...")
+    }
 
-    return 0
+    // 出栈时，将非空队列的前 N-1 个元素导入到另一个队列
+    // 弹出最后一个元素
+    var last int
+    if !this.q1.Empty() {
+        for !this.q1.Empty() {
+            // 先出队
+            v := this.q1.Dequeue()
+            // 如果出队后，队列为空，说明这是最后一个元素
+            if this.q1.Empty() {
+                last = v
+                break
+            }
+
+            // 否则，丢到另一个队列
+            this.q2.Enqueue(v)
+        }
+    } else {
+        for !this.q2.Empty() {
+            // 先出队
+            v := this.q2.Dequeue()
+            // 如果出队后，队列为空，说明这是最后一个元素
+            if this.q2.Empty() {
+                last = v
+                break
+            }
+
+            // 否则，丢到另一个队列
+            this.q1.Enqueue(v)
+        }
+    }
+
+    return last
+}
+
+// 判断是否为空
+func (this *StackWithQueue) Empty() bool {
+    if this.q1.Empty() && this.q2.Empty() {
+        return true
+    }
+
+    return false
 }
 
 // 6、用两个栈实现队列
+type QueueWithStack struct {
+    ins  StackWithArray // 入栈
+    outs StackWithArray // 出栈
+}
+
+// 入队
+func (this *QueueWithStack) Enqueue(v int) {
+    // 入队只往 in 栈中插
+    this.ins.Push(v)
+}
+
+// 出队
+func (this *QueueWithStack) Dequeue() int {
+    if this.Empty() {
+        panic("Queue Empty...")
+    }
+
+    // 出栈时，先把 out 栈中的元素拿空
+    // 再把 in 栈中的数据全部导入到 out 栈
+    if this.outs.Empty() {
+        for !this.ins.Empty() {
+            this.outs.Push(this.ins.Pop())
+        }
+    }
+
+    // 从 out 栈中弹出
+    return this.outs.Pop()
+}
+
+// 判断是否为空
+func (this *QueueWithStack) Empty() bool {
+    if this.ins.Empty() && this.outs.Empty() {
+        return true
+    }
+
+    return false
+}

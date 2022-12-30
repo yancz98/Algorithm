@@ -133,54 +133,88 @@ func TestList(t *testing.T) {
 }
 
 func TestStack(t *testing.T) {
+    fmt.Println("StackWithList...")
     stack := StackWithList{}
-
     stack.Push(1)
     stack.Push(2)
+    fmt.Println(stack.Pop())
     stack.Push(3)
     stack.Push(4)
+    fmt.Println(stack.Pop())
+    stack.Push(5)
 
     for !stack.Empty() {
         fmt.Println(stack.Pop())
     }
     //fmt.Println(stack.Pop())
 
+    fmt.Println("StackWithArray...")
     stack2 := StackWithArray{}
-
     stack2.Push(1)
     stack2.Push(2)
+    fmt.Println(stack2.Pop())
     stack2.Push(3)
     stack2.Push(4)
+    fmt.Println(stack2.Pop())
+    stack2.Push(5)
 
     for !stack2.Empty() {
         fmt.Println(stack2.Pop())
     }
     //fmt.Println(stack2.Pop())
+
+    fmt.Println("StackWithQueue...")
+    stack3 := StackWithQueue{}
+    stack3.Push(1)
+    stack3.Push(2)
+    fmt.Println(stack3.Pop())
+    stack3.Push(3)
+    stack3.Push(4)
+    fmt.Println(stack3.Pop())
+    stack3.Push(5)
+
+    for !stack3.Empty() {
+        fmt.Println(stack3.Pop())
+    }
+    //fmt.Println(stack3.Pop())
 }
 
 func TestQueue(t *testing.T) {
+    fmt.Println("QueueWithList...")
     queue := QueueWithList{}
-
     queue.Enqueue(1)
     queue.Enqueue(2)
+    fmt.Println(queue.Dequeue())
     queue.Enqueue(3)
-
     for !queue.Empty() {
         fmt.Println(queue.Dequeue())
     }
     //fmt.Println(queue.Dequeue())
 
+    fmt.Println("QueueWithArray...")
     queue2 := MakeQueue(5)
-
     queue2.Enqueue(5)
     queue2.Enqueue(6)
     queue2.Enqueue(7)
+    fmt.Println(queue2.Dequeue())
     queue2.Enqueue(8)
     queue2.Enqueue(9)
-    //queue2.Enqueue(10)
-
+    //queue2.Enqueue(10) // Full...
     for !queue2.Empty() {
         fmt.Println(queue2.Dequeue())
     }
-    //fmt.Println(queue2.Dequeue())
+    //fmt.Println(queue2.Dequeue()) // Empty...
+
+    fmt.Println("QueueWithStack...")
+    queue3 := QueueWithStack{}
+    queue3.Enqueue(5)
+    queue3.Enqueue(6)
+    queue3.Enqueue(7)
+    fmt.Println(queue3.Dequeue())
+    queue3.Enqueue(8)
+    queue3.Enqueue(9)
+    for !queue3.Empty() {
+        fmt.Println(queue3.Dequeue())
+    }
+    //fmt.Println(queue3.Dequeue()) // Empty...
 }
