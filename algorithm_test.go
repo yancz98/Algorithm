@@ -5,6 +5,55 @@ import (
     "testing"
 )
 
+// 位运算
+func Test_swap(t *testing.T) {
+    swap(5, 10)
+}
+
+func Test_onlyOneOdd(t *testing.T) {
+    onlyOneOdd()
+}
+
+func Test_retainRightmost1(t *testing.T) {
+    retainRightmost1(250)
+
+    fmt.Println(-74 << 2)
+}
+
+func Test_twoOdd(t *testing.T) {
+    twoOdd()
+}
+
+func Test_binary1Num(t *testing.T) {
+    binary1Num()
+}
+
+// 比较排序
+func TestSelectSort(t *testing.T) {
+    arr := []int{9, 2, 5, 8, 3, 7, 6}
+    fmt.Println("Unordered:", arr)
+    SelectSort(arr)
+    fmt.Println("Orderly:", arr)
+}
+
+func TestBubbleSort(t *testing.T) {
+    arr := []int{9, 2, 5, 8, 3, 7, 6}
+    fmt.Println("Unordered:", arr)
+    BubbleSort(arr)
+    fmt.Println("Orderly:", arr)
+}
+
+func TestInsertSort(t *testing.T) {
+    arr := []int{9, 2, 5, 8, 3, 7, 6}
+    fmt.Println("Unordered:", arr)
+    InsertSort(arr)
+    fmt.Println("Orderly:", arr)
+
+    a := 10
+    fmt.Println(a ^ 0)
+}
+
+// 基本数据结构
 func Test_reverseSingleList(t *testing.T) {
     node4 := &SingleNode{Value: 1, Next: nil}
     node3 := &SingleNode{Value: 1, Next: node4}
