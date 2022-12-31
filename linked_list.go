@@ -19,7 +19,7 @@ type SingleNode struct {
     Next  *SingleNode
 }
 
-// 反转单链表
+// 反转单链表 - 迭代法（双指针）
 func reverseSingleList(head *SingleNode) *SingleNode {
     // 当前节点的前一个、后一个节点
     var prev, next *SingleNode

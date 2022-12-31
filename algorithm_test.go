@@ -54,10 +54,10 @@ func TestInsertSort(t *testing.T) {
 }
 
 // 基本数据结构
-func Test_reverseSingleList(t *testing.T) {
-    node4 := &SingleNode{Value: 1, Next: nil}
-    node3 := &SingleNode{Value: 1, Next: node4}
-    node2 := &SingleNode{Value: 1, Next: node3}
+func TestSingleList(t *testing.T) {
+    node4 := &SingleNode{Value: 4, Next: nil}
+    node3 := &SingleNode{Value: 3, Next: node4}
+    node2 := &SingleNode{Value: 2, Next: node3}
     node1 := &SingleNode{Value: 1, Next: node2}
 
     fmt.Println("Original:")
@@ -66,11 +66,11 @@ func Test_reverseSingleList(t *testing.T) {
     }
 
     // 反转
-    /*reversed := reverseSingleList(node1)
-      fmt.Println("Reversed:")
-      for cur := reversed; cur != nil; cur = cur.Next {
-          fmt.Println(cur.Value)
-      }*/
+    reversed := reverseSingleList(node1)
+    fmt.Println("Reversed:")
+    for cur := reversed; cur != nil; cur = cur.Next {
+        fmt.Println(cur.Value)
+    }
 
     // 删除
     deleted := deleteGiveValueForSingleList(node1, 1)
@@ -217,4 +217,27 @@ func TestQueue(t *testing.T) {
         fmt.Println(queue3.Dequeue())
     }
     //fmt.Println(queue3.Dequeue()) // Empty...
+}
+
+// 递归测试
+func TestRecursion(t *testing.T) {
+    // 阶乘
+    fmt.Println(factorial(2))
+
+    // 反转单链表
+    node4 := &SingleNode{Value: 4, Next: nil}
+    node3 := &SingleNode{Value: 3, Next: node4}
+    node2 := &SingleNode{Value: 2, Next: node3}
+    node1 := &SingleNode{Value: 1, Next: node2}
+
+    fmt.Println("Original:")
+    for cur := node1; cur != nil; cur = cur.Next {
+        fmt.Println(cur.Value)
+    }
+
+    reversed := reverseSingleListByRecursion(node1)
+    fmt.Println("reverseSingleListByRecursion:")
+    for cur := reversed; cur != nil; cur = cur.Next {
+        fmt.Println(cur.Value)
+    }
 }
