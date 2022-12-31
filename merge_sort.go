@@ -69,3 +69,35 @@ func merge(arr []int, l, m, r int) {
         arr[l+j] = orderly[j]
     }
 }
+
+// 归并排序 - 迭代实现
+//
+// 每轮将 eg 个数当作一组，迭代合并左右两组使有序
+// 第一轮：eg = 1，依次迭代，使相邻的 2 个数有序
+// 第二轮：eg = eg<<1，依次迭代，使相邻的 4 个数有序
+// ...
+// 当 eg >= len(arr) 时，结束迭代
+func MergeSortByIterate(arr []int) {
+    // 每组数量
+    eg := 1
+    len := len(arr)
+
+    // 左+右两组的数组小于 len 说明还未完全合并
+    for 2*eg < len {
+        // 按每组 eg 个迭代，每次会合并掉 2*eg
+        for l := 0; l+eg < len; l += 2 * eg {
+            // 右边界，注意不能越界
+            r := l + eg
+            if r >= len {
+                r = len
+            }
+            // 中位
+            m := l + (r-l)>>1
+            // 合并有序
+            merge(arr, l, m, int(r))
+        }
+
+        // eg * 2
+        eg <<= 1
+    }
+}
