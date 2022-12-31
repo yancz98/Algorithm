@@ -241,3 +241,12 @@ func TestRecursion(t *testing.T) {
         fmt.Println(cur.Value)
     }
 }
+
+// 归并排序
+func TestMergeSort(t *testing.T) {
+    arr := []int{3, 1, 2, 4, 6, 8, 5}
+
+    MergeSort(arr)
+
+    fmt.Println(arr)
+}
