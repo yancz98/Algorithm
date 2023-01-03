@@ -14,13 +14,13 @@ package Algorithm
  *  s[5] 的小和为 1+3+5+2+4=15。
  *  所以数组 s 的小和为 0+1+4+1+6+15=27
  *
- * Tags：归并排序、分治
+ * Tags：分治 归并排序
  */
 
 // 小和问题的等价问题：
 //  当前值的右组有多少个数大于当前值，当前值就得累加多少次。
 //  若当前值的右边有序，则不用迭代即可立即得出有多少个大于当前值的数。
-//  利用归并排序的红利，左右已分别有序，即可实现。
+//  利用归并排序的红利，每次比较都不浪费，使左右两边分别有序。
 func SmallSum(arr []int) int {
     if len(arr) == 0 {
         return 0
@@ -48,7 +48,8 @@ func binarySortAndSum(arr []int, l, r int) int {
 
 // 合并 & 求和（求小和的核心思路）
 //  合并之前，左右已分别有序，依次比较左右组的元素，
-//  仅当 arr[li] < arr[ri]，累加 arr[li]*右组其后的元素数量
+//  仅当左小右大时（arr[li] < arr[ri]）产生小和，
+//  小和为 左侧值 arr[li] * 右侧 ri ~ r 的数量
 func mergeAndSum(arr []int, l, m, r int) int {
     // 已合并
     orderly := make([]int, r-l+1)
@@ -58,8 +59,9 @@ func mergeAndSum(arr []int, l, m, r int) int {
     i := 0
     sum := 0
     for li <= m && ri <= r {
+        // 左边小，产生小和
         if arr[li] < arr[ri] {
-            // 当前值累加 右组大于该值的数量 次
+            // arr[li] 产生的小和数量为 ri ~ r
             sum += arr[li] * (r - ri + 1)
             orderly[i] = arr[li]
             li++

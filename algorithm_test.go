@@ -255,6 +255,13 @@ func TestMergeSort(t *testing.T) {
 
 // 计算数组的小和
 func TestSmallSum(t *testing.T) {
-    fmt.Println(SmallSum([]int{1, 3, 4, 2, 5}))
-    fmt.Println(SmallSum([]int{1, 3, 5, 2, 4, 6}))
+    fmt.Println(SmallSum([]int{1, 3, 4, 2, 5}))    // 16
+    fmt.Println(SmallSum([]int{1, 3, 5, 2, 4, 6})) // 27
+}
+
+// 数组中的逆序对
+func TestReversePair(t *testing.T) {
+    fmt.Println(ReversePair([]int{7, 5, 6, 4}))             // 5
+    fmt.Println(ReversePair([]int{1, 2, 3, 4, 5, 6, 7, 0})) // 7
+    fmt.Println(ReversePair([]int{1, 2, 3, 4, 5, 6, 7}))    // 0
 }
