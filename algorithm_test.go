@@ -244,11 +244,11 @@ func TestRecursion(t *testing.T) {
 
 // 归并排序
 func TestMergeSort(t *testing.T) {
-    arr := []int{3, 1, 2, 4, 6, 8, 5}
+    arr := []int{3, 1, 2, 4, 6, 8, 5, 7}
     MergeSort(arr)
     fmt.Println(arr)
 
-    arr2 := []int{3, 1, 2, 4, 6, 8, 5}
+    arr2 := []int{3, 1, 2, 6, 4, 8, 5, 7, 9}
     MergeSortByIterate(arr2)
     fmt.Println(arr2)
 }
