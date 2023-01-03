@@ -5,6 +5,10 @@ package Algorithm
 //  - 求解：递归调用分别将左右两边排好序
 //  - 合并：合并两个有序的子序列使整体有序
 func MergeSort(arr []int) {
+    if len(arr) == 0 {
+        return
+    }
+
     binarySort(arr, 0, len(arr)-1)
 }
 

@@ -22,6 +22,10 @@ package Algorithm
 //  若当前值的右边有序，则不用迭代即可立即得出有多少个大于当前值的数。
 //  利用归并排序的红利，左右已分别有序，即可实现。
 func SmallSum(arr []int) int {
+    if len(arr) == 0 {
+        return 0
+    }
+
     return binarySortAndSum(arr, 0, len(arr)-1)
 }
 
