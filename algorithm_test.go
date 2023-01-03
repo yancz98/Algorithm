@@ -252,3 +252,9 @@ func TestMergeSort(t *testing.T) {
     MergeSortByIterate(arr2)
     fmt.Println(arr2)
 }
+
+// 计算数组的小和
+func TestSmallSum(t *testing.T) {
+    fmt.Println(SmallSum([]int{1, 3, 4, 2, 5}))
+    fmt.Println(SmallSum([]int{1, 3, 5, 2, 4, 6}))
+}
