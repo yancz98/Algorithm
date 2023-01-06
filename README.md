@@ -25,11 +25,14 @@
 
 - [x] [排序](comparison_sort.go)
 
-  - 选择排序
-  - 冒泡排序
-  - 插入排序
-  - [归并排序](merge_sort.go)
-  - [快速排序](quick_sort.go)
+  - 比较排序
+    - 选择排序
+    - 冒泡排序
+    - 插入排序
+    - [归并排序](merge_sort.go)
+    - [快速排序](quick_sort.go)
+  
+  - [堆排序](heap_sort.go)
   
 ## 算法
 

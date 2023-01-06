@@ -297,3 +297,49 @@ func TestQuickSort(t *testing.T) {
     QuickSort3(arr3)
     fmt.Println("sort3:", arr3)
 }
+
+// 堆结构
+func TestHeapStructure(t *testing.T) {
+    // heapInsert
+    var arr []int 
+    arr = heapInsert(arr, 1)
+    arr = heapInsert(arr, 9)
+    arr = heapInsert(arr, 6)
+    arr = heapInsert(arr, 8)
+    arr = heapInsert(arr, 2)
+    arr = heapInsert(arr, 3)
+    arr = heapInsert(arr, 5)
+    fmt.Println("heapInsert:", arr)
+
+    // heapify
+    arr = []int{1, 4, 7, 3, 0, 2, 5}
+    fmt.Println("heapify before:", arr)
+    for i := 0; i < len(arr); i++ {
+        heapify(arr, i)
+    }
+    fmt.Println("heapify after:", arr)
+
+    // Push
+    heap := Heap{}
+    heap.Push(2)
+    heap.Push(5)
+    heap.Push(8)
+    heap.Push(3)
+    heap.Push(6)
+    heap.Push(9)
+    fmt.Println("Push End...", heap.heap)
+
+    // Pop
+    for !heap.Empty() {
+        fmt.Println(heap.Pop())
+    }
+
+    // fmt.Println(heap.Pop())
+     
+    // 将数组初始化为堆
+    rand.Seed(time.Now().UnixNano())
+    arr = rand.Perm(8)
+    fmt.Println("arr:", arr)
+    h := Init(arr)
+    fmt.Println("heap:", h.heap)
+}
