@@ -2,7 +2,9 @@ package Algorithm
 
 import (
     "fmt"
+    "math/rand"
     "testing"
+    "time"
 )
 
 // 位运算
@@ -264,4 +266,34 @@ func TestReversePair(t *testing.T) {
     fmt.Println(ReversePair([]int{7, 5, 6, 4}))             // 5
     fmt.Println(ReversePair([]int{1, 2, 3, 4, 5, 6, 7, 0})) // 7
     fmt.Println(ReversePair([]int{1, 2, 3, 4, 5, 6, 7}))    // 0
+}
+
+// 快速排序
+func TestQuickSort(t *testing.T) {
+    rand.Seed(time.Now().UnixNano())
+
+    arr := rand.Perm(6)
+    fmt.Println("arr:", arr)
+    fmt.Println(partition(arr, 0, len(arr)-1))
+    fmt.Println("after:", arr)
+
+    arr = rand.Perm(7)
+    fmt.Println("arr:", arr)
+    fmt.Println(dutchFlag(arr, 0, len(arr)-1))
+    fmt.Println("after:", arr)
+
+    arr1 := rand.Perm(8)
+    fmt.Println("arr1:", arr1)
+    QuickSort1(arr1)
+    fmt.Println("sort1:", arr1)
+
+    arr2 := rand.Perm(9)
+    fmt.Println("arr2:", arr2)
+    QuickSort2(arr2)
+    fmt.Println("sort2:", arr2)
+
+    arr3 := rand.Perm(10)
+    fmt.Println("arr3:", arr3)
+    QuickSort3(arr3)
+    fmt.Println("sort3:", arr3)
 }
