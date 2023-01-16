@@ -315,7 +315,7 @@ func TestHeapStructure(t *testing.T) {
     arr = []int{1, 4, 7, 3, 0, 2, 5}
     fmt.Println("heapify before:", arr)
     for i := 0; i < len(arr); i++ {
-        heapify(arr, i)
+        heapify(arr, i, len(arr))
     }
     fmt.Println("heapify after:", arr)
 
@@ -342,4 +342,12 @@ func TestHeapStructure(t *testing.T) {
     fmt.Println("arr:", arr)
     h := Init(arr)
     fmt.Println("heap:", h.heap)
+}
+
+func TestHeapSort(t *testing.T) {
+    rand.Seed(time.Now().UnixNano())
+    arr := rand.Perm(8)
+    fmt.Println("arr:", arr)
+    HeapSort(arr)
+    fmt.Println("heapSort:", arr)
 }

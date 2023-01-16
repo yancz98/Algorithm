@@ -32,7 +32,7 @@
     - [归并排序](merge_sort.go)
     - [快速排序](quick_sort.go)
   
-  - [堆排序](heap_sort.go)
+  - [堆排序](heap_sort.go)（[堆结构](heap_structure.go)）
   
 ## 算法
 

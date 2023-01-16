@@ -45,9 +45,8 @@ func heapInsert(arr []int, x int) []int {
 // 堆化（最大堆）
 //  将以 root 为根的节点调整成堆结构
 //  从 root 开始，依次将左、右子树堆化
-func heapify(arr []int, root int) {
-    size := len(arr)
-
+//  size 为堆的长度
+func heapify(arr []int, root, size int) {
     for {
         // 左子
         l := 2*root + 1
@@ -109,7 +108,7 @@ func (h *Heap) Pop() int {
     h.heap = h.heap[:len(h.heap)-1]
 
     // 将 0 位置的元素放到堆中合适的位置
-    heapify(h.heap, 0)
+    heapify(h.heap, 0, len(h.heap))
 
     return res
 }
@@ -134,7 +133,7 @@ func Init(source []int) (h Heap) {
     // 
     // 时间复杂度 = N/4 + N/8*2 + N/16*3 + ... + logN（等比数列）= O(N)
     for r := len(source)/2 - 1; r >= 0; r-- {
-        heapify(source, r)
+        heapify(source, r, len(source))
     }
     h.heap = source
 
