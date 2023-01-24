@@ -351,3 +351,32 @@ func TestHeapSort(t *testing.T) {
     HeapSort(arr)
     fmt.Println("heapSort:", arr)
 }
+
+func TestTrie(t *testing.T) {
+    // 纯小写字母的串
+    tr0 := InitTrie0()
+    tr0.Insert("apple")
+    fmt.Println(tr0.Search("apple"))
+    fmt.Println(tr0.Search("app"))
+    fmt.Println(tr0.StartWith("app"))
+
+    tr0.Insert("app")
+    fmt.Println(tr0.Search("app"))
+
+    fmt.Println("------------------")
+
+    // 任意字符的串
+    tr := InitTrie()
+    tr.Insert("YCZ")
+    fmt.Println(tr.Search("YCZ"))
+    fmt.Println(tr.Search("YYY"))
+    tr.Insert("中华文化博大精深")
+    fmt.Println(tr.StartWith("中华"))
+
+    // 删除
+    fmt.Println("------------------")
+    tr.Delete("YCZ")
+    fmt.Println(tr.Search("YCZ"))
+    tr.Delete("123")
+    fmt.Println(tr.StartWith("中华文化"))
+}
