@@ -380,3 +380,31 @@ func TestTrie(t *testing.T) {
     tr.Delete("123")
     fmt.Println(tr.StartWith("中华文化"))
 }
+
+func TestCountingSort(t *testing.T) {
+    rand.Seed(time.Now().UnixNano())
+    // arr := rand.Perm(100)
+    arr := []int{5,5,5,3,3,7}
+    fmt.Println("Before:", arr)
+    CountingSort(arr)
+    fmt.Println("After", arr)
+}
+
+func TestRadixSort(t *testing.T) {
+    rand.Seed(time.Now().UnixNano())
+    // x := rand.Intn(999999)
+    // digit := getDigit(x)
+    // fmt.Println(x ,"的位数：", digit)
+    // fmt.Println(x, "从低到高位分别为：")
+    // for i := 0; i < digit; i++ {
+    //     fmt.Println(getRadix(x, int(math.Pow(10, float64(i)))))
+    // }
+    
+    // 基数排序
+    arr := []int{rand.Intn(100), rand.Intn(1000), rand.Intn(10000), rand.Intn(1000),
+        rand.Intn(1000), rand.Intn(1000), rand.Intn(100), rand.Intn(10)}
+        
+    fmt.Println("Before:", arr)
+    RadixSort(arr)
+    fmt.Println("After:", arr)
+}
