@@ -22,28 +22,28 @@ package Algorithm
 //  若当前值的右边有序，则不用迭代即可立即得出有多少个大于当前值的数。
 //  利用归并排序的红利，每次比较都不浪费，使左右两边分别有序。
 func SmallSum(arr []int) int {
-    if len(arr) == 0 {
-        return 0
-    }
+	if len(arr) == 0 {
+		return 0
+	}
 
-    return binarySortAndSum(arr, 0, len(arr)-1)
+	return binarySortAndSum(arr, 0, len(arr)-1)
 }
 
 // 二分排序并求和
 //  先用二分排序使左右两组分别有序，并得到左右两组的小和，
 //  再合并有序的左右组，并求出小和
 func binarySortAndSum(arr []int, l, r int) int {
-    // 递归出口
-    // 一个元素的数组没有小和
-    if l == r {
-        return 0
-    }
+	// 递归出口
+	// 一个元素的数组没有小和
+	if l == r {
+		return 0
+	}
 
-    m := l + (r-l)>>2
-    // 左组的小和 + 右组的小和 + 合并后的小和
-    return binarySortAndSum(arr, l, m) +
-        binarySortAndSum(arr, m+1, r) +
-        mergeAndSum(arr, l, m, r)
+	m := l + (r-l)>>2
+	// 左组的小和 + 右组的小和 + 合并后的小和
+	return binarySortAndSum(arr, l, m) +
+		binarySortAndSum(arr, m+1, r) +
+		mergeAndSum(arr, l, m, r)
 }
 
 // 合并 & 求和（求小和的核心思路）
@@ -51,44 +51,44 @@ func binarySortAndSum(arr []int, l, r int) int {
 //  仅当左小右大时（arr[li] < arr[ri]）产生小和，
 //  小和为 左侧值 arr[li] * 右侧 ri ~ r 的数量
 func mergeAndSum(arr []int, l, m, r int) int {
-    // 已合并
-    orderly := make([]int, r-l+1)
+	// 已合并
+	orderly := make([]int, r-l+1)
 
-    // 左右指针
-    li, ri := l, m+1
-    i := 0
-    sum := 0
-    for li <= m && ri <= r {
-        // 左边小，产生小和
-        if arr[li] < arr[ri] {
-            // arr[li] 产生的小和数量为 ri ~ r
-            sum += arr[li] * (r - ri + 1)
-            orderly[i] = arr[li]
-            li++
-        } else {
-            orderly[i] = arr[ri]
-            ri++
-        }
+	// 左右指针
+	li, ri := l, m+1
+	i := 0
+	sum := 0
+	for li <= m && ri <= r {
+		// 左边小，产生小和
+		if arr[li] < arr[ri] {
+			// arr[li] 产生的小和数量为 ri ~ r
+			sum += arr[li] * (r - ri + 1)
+			orderly[i] = arr[li]
+			li++
+		} else {
+			orderly[i] = arr[ri]
+			ri++
+		}
 
-        i++
-    }
+		i++
+	}
 
-    // 左右剩余元素
-    for li <= m {
-        orderly[i] = arr[li]
-        i++
-        li++
-    }
-    for ri <= r {
-        orderly[i] = arr[ri]
-        i++
-        ri++
-    }
+	// 左右剩余元素
+	for li <= m {
+		orderly[i] = arr[li]
+		i++
+		li++
+	}
+	for ri <= r {
+		orderly[i] = arr[ri]
+		i++
+		ri++
+	}
 
-    // 已排序回写原数组
-    for j := 0; j < len(orderly); j++ {
-        arr[l+j] = orderly[j]
-    }
+	// 已排序回写原数组
+	for j := 0; j < len(orderly); j++ {
+		arr[l+j] = orderly[j]
+	}
 
-    return sum
+	return sum
 }

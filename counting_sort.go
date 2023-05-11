@@ -13,33 +13,33 @@ package Algorithm
  * 空间复杂度：O(M)
  */
 func CountingSort(arr []int) {
-    if len(arr) <= 1 {
-        return
-    }
+	if len(arr) <= 1 {
+		return
+	}
 
-    // 最大值
-    max := arr[0]
-    for i := 1; i < len(arr); i++ {
-        if arr[i] > max {
-            max = arr[i]
-        }
-    }
+	// 最大值
+	max := arr[0]
+	for i := 1; i < len(arr); i++ {
+		if arr[i] > max {
+			max = arr[i]
+		}
+	}
 
-    // 创建 bucket
-    bucket := make([]int, max + 1)
+	// 创建 bucket
+	bucket := make([]int, max+1)
 
-    // 计数
-    for _, v := range arr {
-        bucket[v]++
-    }
+	// 计数
+	for _, v := range arr {
+		bucket[v]++
+	}
 
-    // 输出
-    i := 0
-    for idx, cnt := range bucket {
-        // 写入 cnt 个 idx
-        for ;cnt > 0; cnt-- {
-            arr[i] = idx
-            i++
-        }
-    }
+	// 输出
+	i := 0
+	for idx, cnt := range bucket {
+		// 写入 cnt 个 idx
+		for ; cnt > 0; cnt-- {
+			arr[i] = idx
+			i++
+		}
+	}
 }
