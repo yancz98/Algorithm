@@ -1,5 +1,7 @@
 package Algorithm
 
+import "fmt"
+
 /**
  * 链表
  *  - 单向链表
@@ -17,6 +19,27 @@ package Algorithm
 type SingleNode struct {
 	Value int
 	Next  *SingleNode
+}
+
+func (t *SingleNode) Push(v int) {
+	if t == nil {
+		t.Value = v
+		return
+	}
+
+	// 将 t 指到末尾
+	for ; t.Next != nil; t = t.Next {}
+	t.Next = &SingleNode{
+		Value: v,
+		Next:  nil,
+	}
+}
+
+func (t *SingleNode) Print() {
+	for t != nil {
+		fmt.Println(t.Value)
+		t = t.Next
+	}
 }
 
 // 反转单链表 - 迭代法（双指针）
