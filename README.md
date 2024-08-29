@@ -1,6 +1,7 @@
 ## Golang 数据结构 & 算法
 
 - [x] [位运算](bitwise.go)
+  - 加减法 [☯](binary_operate.go)
   - 不用额外的变量交换两个变量 [☯](bitwise.go#L22)
   - 数组中仅有一个数是奇数个，其余数都是偶数个，找出奇数个的那个数 [☯](bitwise.go#L38)
   - 保留 int 型二进制数中最右侧的 1 [☯](bitwise.go#L51)

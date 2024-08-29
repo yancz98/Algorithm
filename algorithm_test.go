@@ -8,6 +8,11 @@ import (
 )
 
 // 位运算
+func Test_binaryOperate(t *testing.T) {
+	binaryOperate1()
+	binaryOperate2()
+}
+
 func Test_swap(t *testing.T) {
 	swap(5, 10)
 }
@@ -425,7 +430,7 @@ func Test_ListMidpoint(t *testing.T) {
 	fmt.Println("midpoint-2:", ListMidpoint(list, 2))
 	fmt.Println("midpoint-3:", ListMidpoint(list, 3))
 	fmt.Println("midpoint-4:", ListMidpoint(list, 4))
-	
+
 	fmt.Println("       upper-midpoint:", ListMidpointOrUpperMidpoint(list))
 	fmt.Println("       lower-midpoint:", ListMidpointOrLowerMidpoint(list))
 	fmt.Println("before-upper-midpoint:", ListBeforeMidpointOrUpperMidpoint(list))
