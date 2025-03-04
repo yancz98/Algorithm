@@ -1,14 +1,15 @@
-package Algorithm
+package sort
 
-/**
- * 堆排序
- *
- * 1、调堆，将 arr 调整为大根堆；
- * 2、每次将堆顶交换到本轮的最后位置后，再次调堆；
- *
- * 时间复杂度：O(N*logN)
- * 空间复杂度：O(1)
- */
+// HeapSort 堆排序
+//
+// 思路：
+//  - 调堆，将 arr 调整为大根堆；
+//  - 每次将堆顶交换到本轮的最后位置后，再次调堆；
+//
+// 特性：
+//  - 时间复杂度：O(N*logN)
+//  - 空间复杂度：O(1)
+//  - 稳定性：不稳定
 func HeapSort(arr []int) {
 	size := len(arr)
 
@@ -17,6 +18,7 @@ func HeapSort(arr []int) {
 	// for r := size - 1; r >= 0; r-- {
 	//     heapify(arr, r, size)
 	// }
+
 	// 优化：O(N)
 	for r := size/2 - 1; r >= 0; r-- {
 		heapify(arr, r, size)

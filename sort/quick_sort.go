@@ -1,4 +1,4 @@
-package Algorithm
+package sort
 
 import (
 	"math/rand"
@@ -16,9 +16,9 @@ import (
  */
 
 // 分区过程
-//  在 arr[l,r] 位置上（假设 key = arr[r]），
-//  将 <= key 的值放到 arr[l,r] 的左边，将 > key 的值放到 arr[l,r] 的右边，返回分区位置
-//  将 <= key 的值交换到小于区的下一个位置，而 > key 的值直接进入下一轮，相当于大于区扩大
+//  在 arr[l, r] 位置上（假设 key = arr[r]），
+//  将 <= key 的值放到 arr 的左边，将 > key 的值放到 arr 的右边，返回分区位置（key 最终的位置）
+//  将 <= key 的值交换到小于区的下一个位置，而 > key 的值直接进入下一轮，相当于小于区扩大
 func partition(arr []int, l, r int) int {
 	// 只有一个元素
 	if l == r {
@@ -45,44 +45,44 @@ func partition(arr []int, l, r int) int {
 }
 
 // 荷兰国旗问题
-//  在 arr[l,r] 位置上（假设 key = arr[r]），
-//  将小于 key 的放 arr[l, r] 左边
-//  将等于 key 的放 arr[l, r] 中间
-//  将大于 key 的放 arr[l, r] 右边
+//  在 arr[l, r] 位置上（假设 key = arr[r]），
+//  将小于 key 的放 arr 左边
+//  将等于 key 的放 arr 中间
+//  将大于 key 的放 arr 右边
 // 设置两个区指针，小于区、大于区，中部分就是等于区，返回等于区的左右边界
-func dutchFlag(arr []int, l, r int) (lt, gt int) {
+func dutchFlag(arr []int, l, r int) (lte, gte int) {
 	// 只有一个元素
 	if l == r {
 		return
 	}
 
 	// 小于区、大于区指针
-	lt, gt = l-1, r+1
+	lte, gte = l-1, r+1
 	// 分区键
 	key := arr[r]
 
 	// 当 i 撞上大于区边界时，比较完成
-	for i := l; i < gt; {
+	for i := l; i < gte; i++ {
 		if arr[i] < key {
-			// 小于逻辑：与小于区下一个位置交换，lt++，比较下一个，i++
-			lt++
-			arr[lt], arr[i] = arr[i], arr[lt]
-			i++
+			// 小于逻辑：与小于区下一个位置（lte++）交换，比较下一个（i++）
+			lte++
+			arr[lte], arr[i] = arr[i], arr[lte]
 		} else if arr[i] == key {
-			// 等于逻辑：比较下一个，i++
-			i++
+			// 等于逻辑：比较下一个（i++）
 		} else {
-			// 大于逻辑：与大于区的前一个位置交换，gt--
+			// 大于逻辑：与大于区的前一个位置（gte--）交换
 			// 新交换到 i 位置的元素还未比较，故留在 i 位置进行下一轮比较
-			gt--
-			arr[gt], arr[i] = arr[i], arr[gt]
+			gte--
+			arr[gte], arr[i] = arr[i], arr[gte]
+			// 新交换到 i 位置的元素还未比较，故停留在 i 位置进行下一轮比较
+			i--
 		}
 	}
 
-	return lt, gt
+	return lte, gte
 }
 
-// 快排 1.0
+// QuickSort1 快排 1.0
 //  每次搞定分区位置的一个元素
 //
 // 时间复杂度（最差情况：原数组有序） = N-1 + N-2 + ... + 1 = (N^2 - N)/2 = O(N^2)
@@ -106,7 +106,7 @@ func process1(arr []int, l, r int) {
 	process1(arr, p+1, r)
 }
 
-// 快排 2.0
+// QuickSort2 快排 2.0
 //  每次搞定相等的一批 key（若没有相同元素，与快排 1.0 效率一样）
 //
 // 时间复杂度（最差情况：原数组有序） = N-1 + N-2 + ... + 1 = (N^2 - N)/2 = O(N^2)
@@ -131,7 +131,7 @@ func process2(arr []int, l, r int) {
 	process2(arr, gt, r)
 }
 
-// 快排 3.0（随机快排）
+// QuickSort3 快排 3.0（随机快排）
 //  不使用固定位置的 arr[R] 作分区键，而是在数组中随机挑选一个与 arr[R] 交换
 //
 // 时间复杂度 = 最好情况和最差情况都是概率事件，最终期望 = O(N*logN)

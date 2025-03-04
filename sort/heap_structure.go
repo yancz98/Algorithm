@@ -1,4 +1,4 @@
-package Algorithm
+package sort
 
 /**
  * 堆结构
@@ -96,7 +96,7 @@ func (h *Heap) Push(x int) {
 //  再拿根节点与左右子节点比，将较大的换上来
 func (h *Heap) Pop() int {
 	if h.Empty() {
-		panic("Heap Empty...")
+		return nil
 	}
 
 	// 根节点

@@ -1,5 +1,9 @@
 package Algorithm
 
+import (
+	"errors"
+)
+
 /**
  * 剑指 Offer II 062. 实现前缀树
  *
@@ -21,11 +25,11 @@ func InitTrie0() Trie0 {
 // 2.字符放在路上，节点上有专属的数据项（pass、end）；
 // 3.添加过程中，如果没有路就新建，有路就复用；
 // 4.沿途节点的 pass 值加 1，每个字符串结束时的节点 end 加 1。
-func (t *Trie0) Insert(word string) {
+func (t *Trie0) Insert(word string) error {
 	for _, ch := range word {
 		// 计算 a~z 的下标，对应 0~25
 		if ch < 97 || ch > 122 {
-			panic("字符串只能由小写英文字母组成")
+			return errors.New("字符串只能由小写英文字母组成")
 		}
 		idx := ch - 97
 
@@ -43,6 +47,8 @@ func (t *Trie0) Insert(word string) {
 
 	// 遍历结束，末尾节点的 end 加 1
 	t.End++
+
+	return nil
 }
 
 // 查询前缀树中是否存在字符串
@@ -50,7 +56,8 @@ func (t *Trie0) Search(word string) bool {
 	for _, ch := range word {
 		// 计算 a~z 的下标，对应 0~25
 		if ch < 97 || ch > 122 {
-			panic("字符串只能由小写英文字母组成")
+			// panic("字符串只能由小写英文字母组成")
+			return false
 		}
 		idx := ch - 97
 
@@ -75,7 +82,8 @@ func (t *Trie0) StartWith(prefix string) bool {
 	for _, ch := range prefix {
 		// 计算 a~z 的下标，对应 0~25
 		if ch < 97 || ch > 122 {
-			panic("字符串只能由小写英文字母组成")
+			// panic("字符串只能由小写英文字母组成")
+			return false
 		}
 		idx := ch - 97
 
